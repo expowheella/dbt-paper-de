@@ -9,16 +9,18 @@
 
 {{ config(materialized='table') }}
 
-with source_data as (
+with raw_events as (
 
-    select 1 as id
-    union all
-    select null as id
+    select 
+        * 
+    from 
+        streaming.raw_events
+    limit 100
 
 )
 
 select *
-from source_data
+from raw_events
 
 /*
     Uncomment the line below to remove records with null `id` values
