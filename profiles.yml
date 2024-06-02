@@ -1,0 +1,22 @@
+paper_demo:
+  outputs:
+    dev:
+      type: bigquery
+      method: service-account
+      project: paper-de 
+      dataset: streaming
+      threads: 1
+      timeout_seconds: 300
+      location: US
+  target: dev
+default:
+  outputs:
+    dev:
+      type: bigquery
+      method: service-account
+      project: paper-de 
+      dataset: streaming
+      threads: 1
+      timeout_seconds: 300
+      location: US
+  target: dev
