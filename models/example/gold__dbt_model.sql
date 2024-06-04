@@ -19,4 +19,4 @@ FROM
 WHERE
     row_num = 1
 ORDER BY
-    deduped.publish_time asc;
+    deduped.publish_time asc
