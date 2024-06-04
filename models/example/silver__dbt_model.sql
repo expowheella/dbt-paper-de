@@ -1,29 +1,28 @@
+{{ config(materialized='table') }}  -- This line ensures the table is materialized
 
-/*
-    Welcome to your first dbt model!
-    Did you know that you can also configure models directly within SQL files?
-    This will override configurations stated in dbt_project.yml
+-- Name of the model file (replace with your desired name)
+source: dbt_example.sql
 
-    Try changing "table" to "view" below
-*/
+-- Define the dimension table name
+name: dim_user
 
-{{ config(materialized='table') }}
+-- Define the columns of the table
+columns:
+  - message_id: int -- Unique identifier for each user (primary key)
+  - operation: string -- User's email address
+  - publish_time: string (nullable) -- User's country code
+  - amount: int -- Timestamp of user creation
 
+-- SQL statement to select and transform data
 with raw_events as (
-
-    select 
-        * 
-    from 
-        streaming.raw_events
-    limit 100
-
+  select
+    message_id,
+    operation,
+    publish_time,
+    amount
+  from
+    streaming.raw_events 
 )
 
 select *
-from raw_events
-
-/*
-    Uncomment the line below to remove records with null `id` values
-*/
-
--- where id is not null
+from raw_events;
